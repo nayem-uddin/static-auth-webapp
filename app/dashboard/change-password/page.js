@@ -4,6 +4,7 @@ import { TextField } from "@mui/material";
 export default function Page() {
   return (
     <div>
+      <h2>Change password</h2>
       <form
         style={{ maxWidth: "450px", marginLeft: "20px", marginTop: "50px" }}
       >

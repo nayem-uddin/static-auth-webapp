@@ -11,3 +11,10 @@ export const dashboardMenu = (segment, title, icon) => {
     icon,
   };
 };
+
+export const tableRow = (field, value) => {
+  return {
+    field,
+    value,
+  };
+};
