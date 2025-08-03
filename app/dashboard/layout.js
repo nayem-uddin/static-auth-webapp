@@ -3,7 +3,6 @@ import { AppProvider, DashboardLayout, SignOutButton } from "@toolpad/core";
 import { dashboardMenus } from "../lib/links";
 import { Home } from "@mui/icons-material";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
 export default function Layout({ children }) {
   return (
     <AppProvider
@@ -14,6 +13,7 @@ export default function Layout({ children }) {
         logo: <Home />,
       }}
     >
+      <title>Dashboard</title>
       <DashboardLayout
         slots={{
           sidebarFooter: SignOutButton,

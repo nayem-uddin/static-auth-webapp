@@ -1,6 +1,8 @@
 import { UpdatePass } from "@/app/ui/buttons";
 import { TextField } from "@mui/material";
-
+export const metadata = {
+  title: "Change password",
+};
 export default function Page() {
   return (
     <div>
