@@ -3,24 +3,31 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
 } from "@mui/material";
 import { personalInfo } from "../lib/tableRows";
-
-export default function Page() {
+import { cookies } from "next/headers";
+import { extractedToken } from "../lib/utils";
+export default async function Page() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
+  const decodedToken = extractedToken(token.value);
   return (
     <div>
       <h2>Personal info</h2>
       <TableContainer>
         <Table>
           <TableBody>
-            {personalInfo.map((row) => (
-              <TableRow key={row.field}>
-                <TableCell component="th">{row.field}</TableCell>
-                <TableCell>{row.value}</TableCell>
-              </TableRow>
-            ))}
+            <TableRow>
+              <TableCell component="th">User ID</TableCell>
+              <TableCell>{decodedToken.userId}</TableCell>
+            </TableRow>
+            {/* {personalInfo.map((row) => ( */}
+            <TableRow>
+              <TableCell component="th">Username</TableCell>
+              <TableCell>{cookieStore.get("username").value}</TableCell>
+            </TableRow>
+            {/* ))} */}
           </TableBody>
         </Table>
       </TableContainer>

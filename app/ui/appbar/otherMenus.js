@@ -1,19 +1,20 @@
 import { dashboardLink, homeLink } from "@/app/lib/links";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import SiteName from "./siteName";
 export default function OtherMenus() {
   return (
-    <div className="d-flex ms-4">
-      {[homeLink, dashboardLink].map((page) => (
-        <Link
-          key={page.title}
-          href={page.href}
-          className="ms-4 text-decoration-none link-light link-opacity-50-hover"
-        >
-          <Typography>{page.title}</Typography>
-        </Link>
-      ))}
-    </div>
+    <Box
+      sx={{ display: { xs: "none", md: "flex" }, ml: 4, alignItems: "center" }}
+    >
+      <SiteName />
+      <Link
+        href={homeLink.href}
+        className="ms-4 text-decoration-none link-light link-opacity-50-hover"
+      >
+        <Typography>{homeLink.title}</Typography>
+      </Link>
+    </Box>
   );
 }

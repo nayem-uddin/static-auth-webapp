@@ -1,28 +1,39 @@
-import { ArrowRightAlt } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import { AccountCircle, ArrowRightAlt, Logout } from "@mui/icons-material";
+import { Button, IconButton } from "@mui/material";
+import { SignOutButton } from "@toolpad/core";
+import Link from "next/link";
+import { signout } from "../lib/actions";
 
-export const Login = () => {
+export function Login({ isDisabled }) {
   return (
     <Button
       type="submit"
       variant="contained"
       fullWidth
-      sx={{ marginTop: 1, marginBottom: 1 }}
+      disabled={isDisabled}
+      aria-label="login"
+      className="mt-2"
     >
       Sign in
     </Button>
   );
-};
+}
 
-export const Signup = () => {
+export function Signup({ isDisabled }) {
   return (
-    <Button type="submit" variant="contained" fullWidth>
+    <Button
+      type="submit"
+      variant="contained"
+      fullWidth
+      disabled={isDisabled}
+      aria-label="signup"
+    >
       register
     </Button>
   );
-};
+}
 
-export const PassChangeRequest = () => {
+export function PassChangeRequest() {
   return (
     <Button
       type="submit"
@@ -30,17 +41,52 @@ export const PassChangeRequest = () => {
       fullWidth
       endIcon={<ArrowRightAlt />}
       className="mt-3"
+      aria-label="password recovery"
       sx={{ borderColor: "black", color: "black" }}
     >
       Continue
     </Button>
   );
-};
+}
 
-export const UpdatePass = () => {
+export function UpdatePass() {
   return (
-    <Button type="submit" variant="outlined" fullWidth>
+    <Button
+      type="submit"
+      variant="outlined"
+      fullWidth
+      aria-label="password change"
+    >
       Update
     </Button>
   );
-};
+}
+
+export function Redirect({ redirectObj }) {
+  const { href, title } = redirectObj;
+  return (
+    <button type="button" className="btn btn-link form-control">
+      <Link href={href}>{title}</Link>
+    </button>
+  );
+}
+
+export function SignOut() {
+  return <SignOutButton disabled={false} onClick={signout} color="error" />;
+}
+
+export function UserMenusButton({ handleMenu }) {
+  return (
+    <IconButton size="large" onClick={handleMenu}>
+      <AccountCircle />
+    </IconButton>
+  );
+}
+
+export function LogoutButton() {
+  return (
+    <button onClick={signout} className="btn btn-outline-danger btn-sm w-100">
+      <Logout /> Log out
+    </button>
+  );
+}

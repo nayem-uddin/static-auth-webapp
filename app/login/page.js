@@ -1,27 +1,36 @@
 "use client";
-import { SignInPage } from "@toolpad/core";
-import Title from "../ui/login/title";
-import ForgotPassword from "../ui/login/forgotPassword";
-import { Login } from "../ui/buttons";
-import SignupLink from "../ui/login/signupLink";
-
+import { Login, Redirect } from "../ui/buttons";
+import { appBarAuthMenus, passRecovery } from "../lib/links";
+import Link from "next/link";
+import { useEffect } from "react";
+import Prompt from "../ui/promptMessage";
+import { useLoginHandler, usePopupView } from "../lib/customStateHooks";
+import { Legend, Password, Username } from "../ui/formFields";
+import FieldsetLayout from "../ui/fieldsetLayout";
 export default function Page() {
-  const providers = [{ id: "credentials", name: "Email and Password" }];
+  const variant = "standard";
+  const redirectObj = appBarAuthMenus[1];
+  const [state, formAction, isPending] = useLoginHandler();
+  const [open, setOpen] = usePopupView();
+  function handleClose() {
+    setOpen(false);
+  }
+  useEffect(() => {
+    setOpen(!state.success);
+  }, [state]);
   return (
-    <div>
-      <SignInPage
-        slots={{
-          title: Title,
-          forgotPasswordLink: ForgotPassword,
-          submitButton: Login,
-          signUpLink: SignupLink,
-        }}
-        slotProps={{
-          emailField: { variant: "standard", autoFocus: false },
-          passwordField: { variant: "standard" },
-        }}
-        providers={providers}
-      />
-    </div>
+    <form action={formAction}>
+      <FieldsetLayout>
+        <Legend heading="Login" />
+        <Username variant={variant} />
+        <Password variant={variant} />
+        <Link href={passRecovery.href} className="float-end">
+          {passRecovery.title}
+        </Link>
+        <Login isDisabled={isPending} />
+        <Redirect redirectObj={redirectObj} />
+        <Prompt message={state.message} open={open} handleClose={handleClose} />
+      </FieldsetLayout>
+    </form>
   );
 }

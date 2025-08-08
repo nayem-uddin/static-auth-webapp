@@ -4,11 +4,5 @@ export const metadata = {
   title: "Register",
 };
 export default function Layout({ children }) {
-  return (
-    <CommonLayout>
-      <div className="d-flex justify-content-center align-items-center min-vh-100">
-        {children}
-      </div>
-    </CommonLayout>
-  );
+  return <CommonLayout>{children}</CommonLayout>;
 }

@@ -1,53 +1,36 @@
+"use client";
 import { TextField } from "@mui/material";
-import { Signup } from "../ui/buttons";
+import { Redirect, Signup } from "../ui/buttons";
 import { appBarAuthMenus } from "../lib/links";
 import { merriweather } from "../ui/fonts";
 import Link from "next/link";
-
+import { usePopupView, useSignupHandler } from "../lib/customStateHooks";
+import Prompt from "../ui/promptMessage";
+import { useEffect } from "react";
+import { Email, Legend, Password, Username } from "../ui/formFields";
+import FieldsetLayout from "../ui/fieldsetLayout";
 export default function Page() {
-  const { href, title } = appBarAuthMenus[0];
+  const variant = "outlined";
+  const redirectObj = appBarAuthMenus[0];
+  const [state, formAction, isPending] = useSignupHandler();
+  const [open, setOpen] = usePopupView();
+  function handleClose() {
+    setOpen(false);
+  }
+  useEffect(() => {
+    setOpen(!state.success);
+  }, [state]);
   return (
-    <form>
-      <fieldset
-        className="border border-secondary-subtle rounded shadow bg-white m-auto"
-        style={{
-          maxWidth: "450px",
-          padding: "20px 40px",
-        }}
-      >
-        <legend className={`text-center ${merriweather.className} mb-3`}>
-          Signup
-        </legend>
-        {["First name", "Last name"].map((field) => (
-          <TextField
-            key={field}
-            label={field}
-            variant="outlined"
-            fullWidth
-            className="mb-2"
-          />
-        ))}
-        <TextField
-          type="email"
-          label="Email"
-          variant="outlined"
-          fullWidth
-          className="mb-2"
-          required
-        />
-        <TextField
-          type="password"
-          label="Password"
-          variant="outlined"
-          fullWidth
-          className="mb-2"
-          required
-        />
-        <Signup />
-        <button type="button" className="btn btn-link form-control">
-          <Link href={href}>{title}</Link>
-        </button>
-      </fieldset>
+    <form action={formAction}>
+      <FieldsetLayout>
+        <Legend heading="Signup" />
+        <Username variant={variant} />
+        <Email variant={variant} />
+        <Password variant={variant} />
+        <Signup isDisabled={isPending} />
+        <Redirect redirectObj={redirectObj} />
+        <Prompt message={state.message} open={open} handleClose={handleClose} />
+      </FieldsetLayout>
     </form>
   );
 }

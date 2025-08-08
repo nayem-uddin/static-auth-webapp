@@ -4,7 +4,8 @@ import { Box, ListItemButton, ListItemText } from "@mui/material";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-export default function MedAndAbove() {
+import UserMenus from "./userMenus";
+export default function MedAndAbove({ isLoggedIn }) {
   const pathname = usePathname();
   return (
     <Box
@@ -14,17 +15,19 @@ export default function MedAndAbove() {
         right: 0,
       }}
     >
-      {appBarAuthMenus.map((menu) => (
-        <ListItemButton
-          key={menu.title}
-          href={menu.href}
-          className={clsx({
-            "border border-secondary-subtle": pathname === menu.href,
-          })}
-        >
-          <ListItemText primary={menu.title} />
-        </ListItemButton>
-      ))}
+      {!isLoggedIn &&
+        appBarAuthMenus.map((menu) => (
+          <ListItemButton
+            key={menu.title}
+            href={menu.href}
+            className={clsx({
+              "border border-secondary-subtle": pathname === menu.href,
+            })}
+          >
+            <ListItemText primary={menu.title} />
+          </ListItemButton>
+        ))}
+      <UserMenus isLoggedIn={isLoggedIn} />
     </Box>
   );
 }

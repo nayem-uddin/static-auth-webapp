@@ -1,4 +1,5 @@
-import { appBarAuthMenus } from "@/app/lib/links";
+import { appBarAuthMenus, homeLink } from "@/app/lib/links";
+
 import {
   Box,
   List,
@@ -7,11 +8,12 @@ import {
   ListItemText,
 } from "@mui/material";
 
-export default function AuthMenus() {
+export default function AuthMenus({ isLoggedIn }) {
+  const links = isLoggedIn ? [homeLink] : [homeLink, ...appBarAuthMenus];
   return (
     <Box sx={{ width: 250 }}>
       <List>
-        {appBarAuthMenus.map((menu) => (
+        {links.map((menu) => (
           <ListItem key={menu.title} disablePadding>
             <ListItemButton href={menu.href}>
               <ListItemText primary={menu.title} />
