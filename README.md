@@ -24,6 +24,7 @@ This is the first project during my internship at Krytix Solutions
 
 1. Go to the login page clicking the "Login" button at the top right corner of the page
 2. Provide your credentials (username and password) and click "sign in" button or press "Enter" key of your keyboard
+   (use "nayem" as the username and "1234" as the password for testing)
 3. If you provide wrong credentials, a modal will show up on the screen containing the message "Authentication failed"
 4. If your credentials are correct, you will be redirected to your dashboard where you will see your details
 5. To log out, click the user icon at the top right corner of the page and click the "log out" button appeared, or, if you are visiting the
