@@ -1,4 +1,4 @@
-import { DialogTitle } from "@mui/material";
+import { DialogTitle, Typography } from "@mui/material";
 
 export default function Title() {
   return <DialogTitle>Error</DialogTitle>;

@@ -1,6 +1,6 @@
 "use client";
-import { ListItemButton, Menu, MenuItem } from "@mui/material";
-import { LogoutButton, SignOut, UserMenusButton } from "../buttons";
+import { Box, ListItemButton, Menu, MenuItem } from "@mui/material";
+import { LogoutButton, UserMenusButton } from "../buttons";
 import { dashboardLink } from "@/app/lib/links";
 import { useState } from "react";
 import { Dashboard } from "@mui/icons-material";
@@ -16,7 +16,7 @@ export default function UserMenus({ isLoggedIn }) {
     return;
   }
   return (
-    <div>
+    <Box>
       <UserMenusButton handleMenu={handleMenu} />
       <Menu
         sx={{ mt: 5 }}
@@ -34,6 +34,6 @@ export default function UserMenus({ isLoggedIn }) {
           <LogoutButton />
         </MenuItem>
       </Menu>
-    </div>
+    </Box>
   );
 }

@@ -8,11 +8,7 @@ export default function Prompt({ message, open, handleClose }) {
         <Title />
         <Content message={message} />
         <DialogActions>
-          <button
-            type="submit"
-            onClick={handleClose}
-            className="btn btn-primary float-end"
-          >
+          <button onClick={handleClose} className="btn btn-primary float-end">
             Ok
           </button>
         </DialogActions>
