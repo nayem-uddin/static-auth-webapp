@@ -21,3 +21,7 @@ export function useSignupHandler() {
   );
   return [state, formAction, isPending];
 }
+export function useOpenState() {
+  const [open, setOpen] = useState(false);
+  return [open, setOpen];
+}

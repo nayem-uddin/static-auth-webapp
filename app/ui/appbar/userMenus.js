@@ -1,15 +1,24 @@
 "use client";
-import { Box, ListItemButton, Menu, MenuItem } from "@mui/material";
-import { LogoutButton, UserMenusButton } from "../buttons";
-import { dashboardLink } from "@/app/lib/links";
+import { Box, Menu } from "@mui/material";
+import { UserMenusButton } from "../buttons";
 import { useState } from "react";
-import { Dashboard } from "@mui/icons-material";
+import DashboardNav from "./userMenus/dashboardNav";
+import SettingsMenu from "./userMenus/settingsMenu";
+import LogoutMenu from "./userMenus/logoutMenu";
+import DrawerContainer from "./settings/drawerContainer";
+import { useOpenState } from "@/app/lib/customStateHooks";
 export default function UserMenus({ isLoggedIn }) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useOpenState();
   function handleMenu(event) {
     setAnchorEl(event.currentTarget);
   }
   function handleClose() {
+    setAnchorEl(null);
+    setOpen(false);
+  }
+  function toggleDrawer() {
+    setOpen(!open);
     setAnchorEl(null);
   }
   if (!isLoggedIn) {
@@ -24,16 +33,11 @@ export default function UserMenus({ isLoggedIn }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem disableGutters>
-          <ListItemButton href={dashboardLink.href}>
-            <Dashboard />
-            &nbsp;{dashboardLink.title}
-          </ListItemButton>
-        </MenuItem>
-        <MenuItem>
-          <LogoutButton />
-        </MenuItem>
+        <DashboardNav />
+        <SettingsMenu toggleMenu={toggleDrawer} />
+        <LogoutMenu />
       </Menu>
+      <DrawerContainer open={open} closeDrawer={handleClose} />
     </Box>
   );
 }

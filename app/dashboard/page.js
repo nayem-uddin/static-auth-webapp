@@ -5,7 +5,6 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
-import { personalInfo } from "../lib/tableRows";
 import { cookies } from "next/headers";
 import { extractedToken } from "../lib/utils";
 export default async function Page() {

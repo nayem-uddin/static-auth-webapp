@@ -28,14 +28,38 @@ body {
   background-repeat: no-repeat;
 }
 .home {
-  background-image: url("/home.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 70vh;
+  background-image:
+    linear-gradient(90deg, black 50%, transparent), url("/handshake.jpg");
+  background-size:
+    cover,
+    50% 100%;
+  background-repeat: no-repeat, no-repeat;
+  background-position: left, right;
+  height: fit-content;
   display: flex;
-  align-items: center;
-  justify-content: center;
+}
+.inner-div {
+  margin-top: 110px;
+  width: 50%;
   h1 {
     color: white;
+  }
+  p {
+    color: white;
+    font-size: larger;
+    line-height: 1.75;
+  }
+}
+
+.color-inherit {
+  color: inherit;
+}
+@media screen and (max-width: 600px) {
+  .inner-div {
+    width: 60%;
+    p {
+      font-size: medium;
+      line-height: 1.5;
+    }
   }
 }
