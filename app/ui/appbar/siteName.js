@@ -1,8 +1,12 @@
+"use client";
 import { archivoBlack } from "@/app/ui/fonts";
 import { Tooltip } from "@mui/material";
+import clsx from "clsx";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function SiteName() {
+  const pathname = usePathname();
   return (
     <Tooltip
       title="Go to home"
@@ -13,7 +17,13 @@ export default function SiteName() {
         },
       }}
     >
-      <Link href="/" className="text-decoration-none text-light">
+      <Link
+        href="/"
+        className={clsx("text-decoration-none", {
+          "text-reset": pathname === "/dashboard",
+          "link-light": pathname !== "/dashboard",
+        })}
+      >
         <p className={`${archivoBlack.className} h2 display-6`}>Demo</p>
       </Link>
     </Tooltip>

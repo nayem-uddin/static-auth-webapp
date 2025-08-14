@@ -1,7 +1,11 @@
+"use client";
 import { Settings, SettingsApplications } from "@mui/icons-material";
-import { Tooltip } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 export default function Toggler({ toggleMenu }) {
+  const pathname = usePathname();
   return (
     <Tooltip
       title="Settings"
@@ -11,9 +15,15 @@ export default function Toggler({ toggleMenu }) {
         },
       }}
     >
-      <button className="btn text-light" onClick={toggleMenu}>
+      <IconButton
+        className={clsx({
+          "text-reset": pathname === "/dashboard",
+          "text-light": pathname !== "/dashboard",
+        })}
+        onClick={toggleMenu}
+      >
         <Settings />
-      </button>
+      </IconButton>
     </Tooltip>
   );
 }

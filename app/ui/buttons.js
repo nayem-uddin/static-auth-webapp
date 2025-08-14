@@ -77,7 +77,7 @@ export function SignOut() {
 
 export function UserMenusButton({ handleMenu }) {
   return (
-    <IconButton onClick={handleMenu}>
+    <IconButton onClick={handleMenu} sx={{ color: "white" }}>
       <AccountCircle fontSize="large" />
     </IconButton>
   );

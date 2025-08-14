@@ -1,5 +1,4 @@
 "use client";
-import { Collapse, ListItemButton, ListItemText } from "@mui/material";
 import Container from "./portalMenu/container";
 import { useState, Fragment } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
@@ -9,7 +8,7 @@ export default function PortalMenus({ isLoggedIn }) {
   const [open, setOpen] = useOpenState();
   const [anchorEl, setAnchorEl] = useState(null);
   function toggleMenu(e) {
-    setOpen(!open);
+    setOpen(true);
     setAnchorEl(e.currentTarget);
   }
   function handleClose() {
@@ -21,8 +20,7 @@ export default function PortalMenus({ isLoggedIn }) {
   return (
     <div>
       <button className="btn text-light" onClick={toggleMenu}>
-        Login/Register
-        {open ? <ExpandLess /> : <ExpandMore />}
+        Login/Register <ExpandMore />
       </button>
       <Container open={open} anchorEl={anchorEl} handleClose={handleClose} />
     </div>

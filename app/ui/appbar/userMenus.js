@@ -17,7 +17,7 @@ export default function UserMenus({ isLoggedIn }) {
     setAnchorEl(null);
     setOpen(false);
   }
-  function toggleDrawer() {
+  function toggleDrawer(event) {
     setOpen(!open);
     setAnchorEl(null);
   }
@@ -34,6 +34,7 @@ export default function UserMenus({ isLoggedIn }) {
         onClose={handleClose}
       >
         <DashboardNav />
+
         <SettingsMenu toggleMenu={toggleDrawer} />
         <LogoutMenu />
       </Menu>

@@ -23,7 +23,7 @@ body {
 }
 
 .common {
-  background-image: url("/city.jpg");
+  background-image: url("/city-night.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }

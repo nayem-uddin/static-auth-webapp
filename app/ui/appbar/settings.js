@@ -6,7 +6,7 @@ import { Fragment } from "react";
 export default function PageSettings({ isLoggedIn }) {
   const [open, setOpen] = useOpenState();
   function toggleMenu() {
-    setOpen(true);
+    setOpen(!open);
   }
   function closeDrawer() {
     setOpen(false);
