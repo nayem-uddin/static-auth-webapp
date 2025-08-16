@@ -5,21 +5,24 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import PageSettings from "./appbar/settings";
 import { cookies } from "next/headers";
 import UserMenus from "./appbar/userMenus";
+import ElevationScroll from "./appbar/elevationScroll";
 export default async function Appbar() {
   const cookieStore = await cookies();
   const isLoggedIn = cookieStore.has("token");
   return (
-    <AppBar color="transparent" enableColorOnDark>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters className="d-flex justify-content-between">
-          <SiteName />
-          <Box sx={{ display: "flex" }}>
-            <PortalMenus isLoggedIn={isLoggedIn} />
-            <PageSettings isLoggedIn={isLoggedIn} />
-            <UserMenus isLoggedIn={isLoggedIn} />
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <ElevationScroll>
+      <AppBar color="transparent" enableColorOnDark>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters className="d-flex justify-content-between">
+            <SiteName />
+            <Box sx={{ display: "flex" }}>
+              <PortalMenus isLoggedIn={isLoggedIn} />
+              <PageSettings isLoggedIn={isLoggedIn} />
+              <UserMenus isLoggedIn={isLoggedIn} />
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </ElevationScroll>
   );
 }
