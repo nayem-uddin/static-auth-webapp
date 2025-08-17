@@ -10,18 +10,23 @@ export function usePopupView() {
 export function useLoginHandler() {
   const [state, formAction, isPending] = useActionState(
     login,
-    initialAuthState
+    initialAuthState,
   );
   return [state, formAction, isPending];
 }
 export function useSignupHandler() {
   const [state, formAction, isPending] = useActionState(
     signup,
-    initialAuthState
+    initialAuthState,
   );
   return [state, formAction, isPending];
 }
 export function useOpenState() {
   const [open, setOpen] = useState(false);
   return [open, setOpen];
+}
+
+export function useVisibility() {
+  const [visible, setVisibility] = useState(false);
+  return { visible, setVisibility };
 }

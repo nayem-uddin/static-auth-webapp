@@ -31,3 +31,41 @@ export async function signout() {
   cookieStore.delete("token");
   redirect("/login", RedirectType.push);
 }
+
+export async function passChangeRequest(prevState, formData) {
+  const email = formData.get("email");
+  const { res, data } = await postRequest("send-otp", { email });
+  if (!res.ok) {
+    return { success: false, message: data.error };
+  }
+  const cookieStore = await cookies();
+  cookieStore.set("email", email);
+  redirect("/reset-password", RedirectType.push);
+}
+
+export async function resendOTP() {
+  const email = (await cookies()).get("email").value;
+  const { res } = await postRequest("send-otp", { email });
+  if (res.ok) {
+    return {
+      type: "success",
+      message: "OTP is sent. Please check your mailbox.",
+    };
+  }
+  return { type: "error", message: "Please try again later." };
+}
+
+export async function resetPassword(prevState, formData) {
+  const email = (await cookies()).get("email").value;
+  const otp = formData.get("otp");
+  const password = formData.get("password");
+  const { res, data } = await postRequest("reset-password", {
+    email,
+    otp,
+    newPassword: password,
+  });
+  if (res.ok) {
+    redirect("/dashboard", RedirectType.replace);
+  }
+  return { success: false, message: data.error };
+}

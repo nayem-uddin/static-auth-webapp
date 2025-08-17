@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 export default function Toggler({ toggleMenu }) {
   const pathname = usePathname();
+  const isOnDashboard = pathname.includes("/dashboard");
   return (
     <Tooltip
       title="Settings"
@@ -17,8 +18,8 @@ export default function Toggler({ toggleMenu }) {
     >
       <IconButton
         className={clsx({
-          "text-reset": pathname === "/dashboard",
-          "text-light": pathname !== "/dashboard",
+          "text-reset": isOnDashboard,
+          "text-light": !isOnDashboard,
         })}
         onClick={toggleMenu}
       >

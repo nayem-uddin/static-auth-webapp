@@ -21,12 +21,10 @@ export default async function Page() {
               <TableCell component="th">User ID</TableCell>
               <TableCell>{decodedToken.userId}</TableCell>
             </TableRow>
-            {/* {personalInfo.map((row) => ( */}
             <TableRow>
               <TableCell component="th">Username</TableCell>
               <TableCell>{cookieStore.get("username").value}</TableCell>
             </TableRow>
-            {/* ))} */}
           </TableBody>
         </Table>
       </TableContainer>

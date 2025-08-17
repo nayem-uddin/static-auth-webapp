@@ -12,6 +12,7 @@ import {
 import { merriweather } from "./fonts";
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useVisibility } from "../lib/customStateHooks";
 
 export function Legend({ heading }) {
   return (
@@ -48,12 +49,12 @@ export function Email({ variant }) {
   );
 }
 
-export function Password({ variant }) {
-  const [visible, setVisibility] = useState(false);
+export function Password({ variant, label = "Password" }) {
+  const { visible, setVisibility } = useVisibility();
   const props = { visible, setVisibility };
   return (
     <FormControl variant={variant} required fullWidth>
-      <InputLabel htmlFor="password">Password</InputLabel>
+      <InputLabel htmlFor="password">{label}</InputLabel>
       {variant === "standard" ? (
         <StandardPasswordField {...props} />
       ) : (
@@ -88,7 +89,7 @@ function OutlinedPasswordField(props) {
   );
 }
 
-function ToggleVisibility({ visible, setVisibility }) {
+export function ToggleVisibility({ visible, setVisibility }) {
   const msg = `${visible ? "Hide" : "Show"} password`;
   function handleVisibility() {
     setVisibility((prev) => !prev);

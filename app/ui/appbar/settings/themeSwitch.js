@@ -18,7 +18,7 @@ export default function ThemeSwitch() {
     <Box>
       <p
         className={clsx({
-          "mt-5": pathname === "/dashboard",
+          "mt-5": pathname.includes("/dashboard"),
         })}
       >
         Theme

@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 
 export default function SiteName() {
   const pathname = usePathname();
+  const isOnDashboard = pathname.includes("/dashboard");
   return (
     <Tooltip
       title="Go to home"
@@ -20,8 +21,8 @@ export default function SiteName() {
       <Link
         href="/"
         className={clsx("text-decoration-none", {
-          "text-reset": pathname === "/dashboard",
-          "link-light": pathname !== "/dashboard",
+          "text-reset": isOnDashboard,
+          "link-light": !isOnDashboard,
         })}
       >
         <p className={`${archivoBlack.className} h2 display-6`}>Demo</p>

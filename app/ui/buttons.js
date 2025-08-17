@@ -49,15 +49,16 @@ export function PassChangeRequest() {
   );
 }
 
-export function UpdatePass() {
+export function UpdatePass({ isDisabled }) {
   return (
     <Button
       type="submit"
       variant="outlined"
       fullWidth
       aria-label="password change"
+      disabled={isDisabled}
     >
-      Update
+      Continue
     </Button>
   );
 }

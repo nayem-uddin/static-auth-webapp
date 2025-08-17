@@ -22,6 +22,8 @@ This is the first project during my internship at Krytix Solutions
 
 ## App test guidance
 
+### Sign-in
+
 1. Go to the login page clicking the "Login" button at the top right corner of the page
 2. Provide your credentials (username and password) and click "sign in" button or press "Enter" key of your keyboard
    (use "nayem" as the username and "1234" as the password for testing)
@@ -29,3 +31,10 @@ This is the first project during my internship at Krytix Solutions
 4. If your credentials are correct, you will be redirected to your dashboard where you will see your details
 5. To log out, click the user icon at the top right corner of the page and click the "log out" button appeared, or, if you are visiting the
    dashboard page, click the "sign out" button at the bottom left corner of the page
+
+### Change password
+
+1. In the dashboard, click the `Change password` option at the right pane
+2. Provide a valid email Id and click the **continue** button (remember, provide a real email; otherwise, you won't get the OTP.)
+3. If your email ID is associated with your account, an email with an OTP will be sent to your email ID and, at the same time, you'll be redirected to a page where you'll be asked to provide your OTP and new password
+4. If your OTP is valid, your password will be updated and you'll be redirected to your dashboard. From your next login onwards, you'll be required to provide your updated password to sign in.
