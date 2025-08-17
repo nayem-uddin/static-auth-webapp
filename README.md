@@ -37,4 +37,6 @@ This is the first project during my internship at Krytix Solutions
 1. In the dashboard, click the `Change password` option at the right pane
 2. Provide a valid email Id and click the **continue** button (remember, provide a real email; otherwise, you won't get the OTP.)
 3. If your email ID is associated with your account, an email with an OTP will be sent to your email ID and, at the same time, you'll be redirected to a page where you'll be asked to provide your OTP and new password
-4. If your OTP is valid, your password will be updated and you'll be redirected to your dashboard. From your next login onwards, you'll be required to provide your updated password to sign in.
+4. If your OTP is valid, your password will be updated and you'll be redirected to another page where you'll be asked to choose one of two actions: either continue the current session or end the session
+5. If you choose to continue the current session, you'll be redirected to the dashboard.
+6. If you choose to end the current session, you'll be logged out and redirected to the login page.
