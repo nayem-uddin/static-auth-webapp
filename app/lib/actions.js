@@ -29,7 +29,7 @@ export async function login(prevState, formData) {
 export async function signout() {
   const cookieStore = await cookies();
   cookieStore.delete("token");
-  redirect("/login", RedirectType.push);
+  redirect("/login", RedirectType.replace);
 }
 
 export async function passChangeRequest(prevState, formData) {
@@ -65,7 +65,11 @@ export async function resetPassword(prevState, formData) {
     newPassword: password,
   });
   if (res.ok) {
-    redirect("/dashboard", RedirectType.replace);
+    redirect("/decide-action", RedirectType.push);
   }
   return { success: false, message: data.error };
+}
+
+export async function redirectToDashboard() {
+  redirect("/dashboard", RedirectType.replace);
 }

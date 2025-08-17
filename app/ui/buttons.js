@@ -2,7 +2,7 @@ import { AccountCircle, ArrowRightAlt, Logout } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import { SignOutButton } from "@toolpad/core";
 import Link from "next/link";
-import { signout } from "../lib/actions";
+import { redirectToDashboard, signout } from "../lib/actions";
 
 export function Login({ isDisabled }) {
   return (
@@ -88,6 +88,25 @@ export function LogoutButton() {
   return (
     <button onClick={signout} className="btn btn-outline-danger btn-sm w-100">
       <Logout /> Log out
+    </button>
+  );
+}
+
+export function EndSession() {
+  return (
+    <button className="btn btn-outline-danger" onClick={signout}>
+      Log out and end this session
+    </button>
+  );
+}
+
+export function ContinueSession() {
+  return (
+    <button
+      className="btn btn-outline-success mb-2"
+      onClick={redirectToDashboard}
+    >
+      Continue this session
     </button>
   );
 }
