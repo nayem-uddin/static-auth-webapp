@@ -8,6 +8,7 @@ import { useState } from "react";
 import PasswordReType from "./passRetype";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import SetNewPassword from "./newPass";
+import { Suspense } from "react";
 
 export default function VerifyAndReset({ isPending }) {
   const [isOTPRequestPending, startTransition] = useTransition();

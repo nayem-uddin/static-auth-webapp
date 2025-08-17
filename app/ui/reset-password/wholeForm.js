@@ -7,6 +7,7 @@ import VerifyAndReset from "./verifyAndReset";
 import Prompt from "../promptMessage";
 import { usePopupView } from "@/app/lib/customStateHooks";
 import { useEffect } from "react";
+import { Suspense } from "react";
 
 export default function WholeForm() {
   const [state, formAction, isPending] = useActionState(
@@ -21,9 +22,11 @@ export default function WholeForm() {
     setOpen(!state.success);
   }, [state]);
   return (
-    <form action={formAction}>
-      <VerifyAndReset isPending={isPending} />
-      <Prompt open={open} handleClose={handleClose} message={state.message} />
-    </form>
+    <Suspense>
+      <form action={formAction}>
+        <VerifyAndReset isPending={isPending} />
+        <Prompt open={open} handleClose={handleClose} message={state.message} />
+      </form>
+    </Suspense>
   );
 }
